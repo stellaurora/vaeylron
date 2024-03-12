@@ -1,2 +1,2 @@
 # vaeylron
-CSS design framework based off Vaeylron Launcher
+A styling and web components framework based off the design of the Vaeylron Launcher
