@@ -1,0 +1,71 @@
+@use 'theme';
+@use 'layer';
+
+vae-checkbox::part(button) {
+    width: fit-content;
+    display: flex;
+    align-items: center;
+    background-color: transparent;
+    border: none;
+    padding: 0;
+    cursor: pointer; 
+    @include theme.small_text;
+    @include theme.vae_fonts;
+    user-select: none;
+}
+
+vae-checkbox::part(button)::before {
+    content: attr(unchecked);
+    font-size: 12px;
+    @extend vae-layer;
+    transition:  background-color, border-color 0.3s ease-out;
+    border-radius: theme.$alt-corner-rounding;
+    margin-right: 8px;
+    height: 16px;
+    width: 16px;
+    padding: 0;
+    @include theme.element_dropshadow;
+}
+
+vae-checkbox::part(button):focus-visible {
+    outline: none;
+    border-radius: theme.$alt-corner-rounding;
+}
+
+
+@include theme.theme-elements() {
+    vae-checkbox::part(button)::before {
+        transition:  background-color 0.2s ease-out;
+        background-color: theme.get-element("layer-alt");
+        text-align: center;
+        color: theme.get-element("label-colour");
+    }
+
+    vae-checkbox::part(button) {
+        color: theme.get-element("base-colour");
+    }
+
+    vae-checkbox::part(button):focus-visible {
+        outline: theme.get-element("hover-border") solid 2px;
+    }
+
+    vae-checkbox::part(button):focus-visible::before, vae-checkbox::part(button):hover::before {
+        border-color: theme.get-element("hover-border");
+        background-color: theme.get-element("layer-base");
+    }
+
+    vae-checkbox[checked]::part(button)::before {
+        content: attr(icon);
+    }
+
+    @each $colour in theme.$all-colours {
+        vae-checkbox[theme=#{$colour}][checked]::part(button)::before {
+            background-color: theme.get-element(#{$colour});
+        }
+    }
+}
+
+vae-checkbox[disabled] {
+    opacity: 0.3;
+    pointer-events: none;
+}

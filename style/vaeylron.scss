@@ -1,0 +1,17 @@
+@use 'theme';
+@use 'layer';
+@use 'text-input';
+@use 'utils';
+@use 'button';
+@use 'modal';
+@use 'header';
+@use "checkbox";
+@use 'listbar';
+@use 'dropdown';
+@use 'file-picker';
+
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600;1,700&display=swap');
+
+html {
+    @include theme.vae_fonts;
+}

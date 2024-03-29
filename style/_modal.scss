@@ -1,0 +1,86 @@
+@use 'theme';
+
+vae-modal {
+    transition: opacity 0.2s ease-out;
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    opacity: 0;
+    backdrop-filter: blur(26px);
+    -webkit-backdrop-filter: blur(26px);
+    display: flex;
+    flex-flow: column;
+    align-items: center;
+    justify-content: center;
+    z-index: 100000;
+    pointer-events: none;
+    background-color: rgb(0, 0, 0, 0.1);
+}
+
+vae-modal[show] {
+    display: flex;
+    opacity: 1;
+    pointer-events: all;
+}
+
+// Move the close button to the top right corner of the modal layer
+.modal-close {
+    position: absolute;
+    right: 0;
+    top: 0;
+}
+
+.modal-close::part(button) {
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+}
+
+.modal-layer {
+    transition: transform 0.2s ease-in-out;
+    transform: translateY(-30%);
+}
+
+.modal-title, .modal-header {
+    margin: 0;
+    margin-right: 40px;
+}
+
+.modal-icon {
+    float: left;
+}
+
+vae-modal[icon] .modal-icon {
+    margin-right: 12px;
+}
+
+.modal-header-wrapper {
+    display: flex;
+    flex-flow: row;
+    align-items: center;
+}
+
+.modal-header-text-wrapper {
+    display: flex;
+    flex-flow: column wrap;
+}
+
+.modal-layer {
+    display: flex;
+    flex-flow: column;
+    margin: 8px;
+}
+
+vae-modal[show] .modal-layer {
+    transform: translateY(0%);
+}
+
+@include theme.theme-elements() {
+    .modal-title {
+        color: theme.get-element("base-colour");
+    }
+
+    .modal-header {
+        color: theme.get-element("alt-colour");
+    }
+}

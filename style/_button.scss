@@ -1,0 +1,70 @@
+@use 'theme';
+
+vae-button::part(button) {
+    position: relative;
+    transition: 0.2s background-color, opacity ease-out;
+    width: 100%;
+    border-radius: theme.$alt-corner-rounding;
+    border: none;
+    padding: 12px;
+    @include theme.small_text;
+    @include theme.element_dropshadow;
+    @include theme.vae_fonts;
+    cursor: pointer;  
+    user-select: none;
+}
+
+vae-button::part(button):focus-visible {
+    outline-width: theme.$border-outline-width;
+    outline-style: solid;
+}
+
+@include theme.theme-elements() {
+    vae-button::part(button) {
+        color: theme.get-element("label-colour");
+    }
+
+    @each $colour in theme.$all-colours {
+        vae-button[theme=#{$colour}]::part(button) {
+            background-color: theme.get-element(#{$colour});
+        }
+
+        vae-button[theme=#{$colour}]::part(button):hover {
+            background-color: theme.get-element(#{$colour}+"-hover");
+        }
+        
+        vae-button[theme=#{$colour}]::part(button):active {
+            background-color: theme.get-element(#{$colour}+"-click");
+        }
+
+        vae-button[theme=#{$colour}]::part(button) {
+            background-image: theme.get-element(#{$colour}+"-background");
+        }
+
+        vae-button[theme=#{$colour}][ghost]::part(button) {
+            background-color: transparent;
+            color: theme.get-element(#{$colour}+"-ghost");
+        }
+    }
+
+    vae-button::part(button):focus-visible {
+        outline-color: theme.get-element("hover-border");
+    }
+
+    vae-button[ghost]::part(button):hover {
+        background-color: theme.get-element("ghost");
+    }
+
+    vae-button[ghost]::part(button):active {
+        background-color: theme.get-element("ghost-click");
+    }
+}
+
+vae-button[ghost]::part(button) {
+    box-shadow: none;
+}
+
+vae-button[disabled]::part(button) {
+    opacity: 0.3;
+    pointer-events: none;
+}

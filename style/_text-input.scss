@@ -1,0 +1,56 @@
+@use 'layer';
+@use 'theme';
+
+vae-text-input {
+    display: flex;
+    flex-direction: column;
+    justify-content: left;
+    gap: 6px;
+}
+
+vae-text-input::part(input) {
+    @extend vae-layer;
+    box-sizing: border-box;
+    flex-grow: 1;
+    border-radius: theme.$alt-corner-rounding;
+    padding: 12px;
+    outline: none;
+    @include theme.element_dropshadow;
+}
+
+vae-text-input::part(label), vae-text-input::part(input), vae-text-input::part(sub-label) {
+    @include theme.vae_fonts;
+    @include theme.small_text;
+}
+
+@include theme.theme-elements() {
+    vae-text-input[style-state="error"]::part(input) {
+        border-color: theme.get-element("error");
+    }
+
+    vae-text-input[style-state="error"]::part(sub-label) {
+        color: theme.get-element("error");
+    }
+
+    vae-text-input::part(input) {
+        background-color: theme.get-element("layer-alt");
+    }
+
+    vae-text-input::part(input), vae-text-input::part(sub-label) {
+        color: theme.get-element("alt-colour");
+    }
+
+    vae-text-input::part(label) {
+        color: theme.get-element("base-colour");
+    }
+
+    vae-text-input::part(input):focus, vae-text-input::part(input):hover {
+        border-color: theme.get-element("hover-border");
+        background-color: theme.get-element("layer-base");
+    }
+}
+
+vae-text-input[disabled] {
+    opacity: 0.4;
+    pointer-events: none;
+}

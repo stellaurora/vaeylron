@@ -1,0 +1,62 @@
+@use 'layer';
+@use 'theme';
+
+vae-file-picker::part(label), vae-file-picker::part(descriptor), vae-file-picker::part(uploader) {
+    @include theme.small_text;
+    @include theme.vae_fonts;
+}
+
+vae-file-picker::part(uploader) {
+    @extend vae-layer;
+    transition: none;
+    transition: 0.2s background-color ease-out;
+    cursor: pointer;
+}
+
+vae-file-picker::part(uploader):focus-visible {
+    outline-width: theme.$border-outline-width;
+    outline-style: solid;
+}
+
+vae-file-picker::part(file-input) {
+    display: none;
+}
+
+@include theme.theme-elements() {
+    vae-file-picker::part(descriptor) {
+        color: theme.get-element("alt-colour");
+    }
+
+    vae-file-picker::part(label) {
+        color: theme.get-element("base-colour");
+    }
+
+    vae-file-picker::part(uploader) {
+        border: 2px dashed theme.get-element("hover-border");
+        background-color: theme.get-element("layer-alt");
+        outline-color: theme.get-element("hover-border");
+        color: theme.get-element("alt-colour");
+    }
+
+    vae-file-picker::part(uploader):hover {
+        background-color: theme.get-element("layer-base");
+    }
+
+    @each $colour in theme.$all-colours {
+        vae-file-picker[theme=#{$colour}]::part(uploader) {
+            color: theme.get-element(#{$colour});
+        }
+    }
+}
+
+vae-file-picker {
+    display: flex;
+    flex-flow: column;
+}
+
+vae-file-picker::part(uploader) {
+    margin-top: 12px;
+    padding: 12px;
+    border-radius: theme.$alt-corner-rounding;
+    white-space: pre-wrap;
+}

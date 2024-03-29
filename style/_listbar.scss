@@ -1,0 +1,87 @@
+@use 'layer';
+@use 'theme';
+
+
+vae-listbar::part(header), vae-listbar::part(title) {
+    margin: 0;
+    text-align: center;
+}
+
+vae-listbar::part(header) {
+    margin-top: 24px;
+}
+
+vae-listbar[no-header]::part(header), vae-listbar[no-header]::part(title) {
+    display: none;
+}
+
+vae-listbar {
+    @extend vae-layer;
+    display: flex;
+    flex-flow: column;
+    position: relative;
+    @extend button;
+    overflow: hidden;
+    padding: 0;
+}
+
+vae-listbar::part(scrollable) {
+    flex-grow: 1;
+    display: flex;
+    flex-flow: column;
+    box-shadow: inset -5px 35px 27px -36px rgba(0, 0, 0, 0.1);
+    margin-top: 24px;
+    overflow-x: hidden;
+    overflow-y: scroll;
+    scrollbar-width: thin;
+}
+
+vae-listbar[no-header]::part(scrollable) {
+    margin-top: 0;
+    border-top: none;
+}
+
+vae-listbar > button {
+    @extend vae-layer, [type=base];
+    @include theme.vae_fonts;
+    text-align: left;
+    border-radius: 0;
+    border: 3px transparent solid;
+    box-shadow: none;
+}
+
+vae-listbar > button:focus-visible {
+    outline: none;
+}
+
+@include theme.theme-elements() {
+    vae-listbar::part(scrollable) {
+        border-top: 3px theme.get-element("layer-border") solid;
+        scrollbar-color: theme.get-element("alt-colour") theme.get-element("layer-base");
+    }
+
+    vae-listbar::part(title) {
+        color: theme.get-element("base-colour");
+    }
+
+    vae-listbar::part(header) {
+        color: theme.get-element("alt-colour");
+    }
+
+    vae-listbar > button {
+        border-bottom: 3px theme.get-element("layer-border") solid;
+        background-color: theme.get-element("layer-alt");
+    }
+
+    vae-listbar > button:hover, vae-listbar > button:focus-visible {
+        border: 3px solid theme.get-element("hover-border");
+        background-color: theme.get-element("layer-base");
+        cursor: pointer;
+    }
+    
+    vae-listbar > button:active {
+        transition:  background-color 0.1s ease-out;
+        background-color: theme.get-element("ghost-click");
+    }
+}
+

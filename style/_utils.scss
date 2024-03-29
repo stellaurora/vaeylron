@@ -1,0 +1,18 @@
+
+@use 'theme';
+
+@include theme.theme-elements() {
+    .apply-vae-colour {
+        color: theme.get-element("base-colour");
+    }
+    
+    .apply-vae-colour-alt {
+        color: theme.get-element("alt-colour");
+    }
+
+    @each $colour in theme.$all-colours {
+        .apply-vae-#{$colour} {
+            color: theme.get-element($colour);
+        }
+    }
+}

@@ -1,0 +1,26 @@
+@use 'layer';
+
+vae-layer:has(> vae-header > vae-button) {
+    position: relative;
+    padding-top: 0px;
+}
+
+
+vae-header {
+    @extend vae-layer;
+    box-sizing: border-box;
+    width: 100%;
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+    padding: 6px;
+    backdrop-filter: blur(36px);
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: flex-end;
+    align-items: center;
+    text-align: center;
+    gap: 6px;
+}

@@ -1,0 +1,121 @@
+/**
+ * Colours
+ */
+
+$themes: (
+    light: (
+        layer-fill: rgba(255, 255, 255, 0.4),
+        layer-base: rgba(255, 255, 255, 0.25),
+        layer-alt: rgba(255, 255, 255, 0.1),
+        layer-border: rgba(255, 255, 255, 0.125),
+        hover-border: rgba(255, 255, 255, 0.6),
+        base-colour:  #1f1f1f,
+        alt-colour: #3f3f3f,
+
+        // Base colours
+        primary: #1b74d3,
+        secondary: #3f3f3f,
+        error: #9C0505,
+        success: #62ac30,
+
+        // Button colours
+        label-colour: ghostwhite,
+        primary-hover: #144f8f,
+        primary-click: #102b55,
+
+        error-hover: #680000,
+        error-click: #2e0505,
+
+        secondary-hover: #2c2c2c,
+        secondary-click: #0c0c0c,
+
+        success-hover: #4f8629,
+        success-click: #2c550f,
+
+        // Ghost button colours
+        primary-ghost: #0557af,
+        error-ghost: #9C0505,
+        secondary-ghost: #3f3f3f,
+        success-ghost: #4b9e0f,
+
+        ghost: rgba(255, 255, 255, 0.25),
+        ghost-click: rgba(255, 255, 255, 0.6),
+    ),
+    dark: (
+        layer-fill: rgba(36, 37, 46, 0.4),
+        layer-alt: rgba(36, 37, 46, 0.1),
+        layer-base: rgba(20, 20, 23, 0.35),
+        layer-border: rgba(255, 255, 255, 0.1),
+        hover-border: rgba(255, 255, 255, 0.6),
+        base-colour:  ghostwhite,
+        alt-colour: #d4d4d4,
+
+        // Base colours
+        primary: #1b74d3,
+        secondary: #3f3f3f,
+        error: #9C0505,
+        success: #62ac30,
+
+        // Button colours
+        label-colour: ghostwhite,
+        primary-hover: #144f8f,
+        primary-click: #102b55,
+
+        error-hover: #680000,
+        error-click: #2e0505,
+
+        secondary-hover: #2c2c2c,
+        secondary-click: #0c0c0c,
+
+        success-hover: #4f8629,
+        success-click: #2c550f,
+
+        // Ghost button colours
+        primary-ghost: #1385ff,
+        error-ghost: #ff5353,
+        secondary-ghost: #d4d4d4,
+        success-ghost: #7dd340,
+
+        ghost: rgba(255, 255, 255, 0.25),
+        ghost-click: rgba(255, 255, 255, 0.6),
+    ),
+);
+
+/**
+ * Variables
+ */
+$all-colours: ("primary" "error" "secondary" "success");
+$base-corner-rounding: 12px;
+$alt-corner-rounding:  6px;
+$border-outline-width: 3px;
+
+/**
+ * Mixins
+ */
+
+@mixin vae_fonts {
+    font-family: "IBM Plex Sans", "Font Awesome 6 Free", "Material Icons", 'Bootstrap-icons', sans-serif;
+}
+
+@mixin element_dropshadow {
+    box-shadow: 0 0px 8px rgba(0, 0, 0, 0.1);
+}
+
+@mixin small_text {
+    font-size: 16px;
+    font-weight: 500;
+}
+
+
+@mixin theme-elements() {
+    @each $name, $values in $themes {
+        .#{$name}-theme {
+            $theme-map: $values !global;
+            @content;
+        }
+    }
+}
+
+@function get-element($key) {
+    @return map-get($theme-map, $key);
+}

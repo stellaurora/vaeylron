@@ -1,0 +1,44 @@
+@use 'theme';
+
+
+
+vae-layer {
+    transition:  all 0.3s ease-out;
+    backdrop-filter: blur(26px);
+    -webkit-backdrop-filter: blur(26px);
+    border-radius: theme.$base-corner-rounding;
+    border-width: theme.$border-outline-width;
+    border-style: solid;
+    padding: 24px;
+    display: block;
+}
+
+vae-layer[type="base"] {
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.4);
+}
+
+vae-layer[type="alt"] {
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+}
+
+vae-layer[no-blur] {
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+}
+
+@include theme.theme-elements() {
+    vae-layer {
+        border-color: theme.get-element("layer-border");
+        background-color: theme.get-element("layer");
+        scrollbar-width: thin;
+        scrollbar-color: theme.get-element("alt-colour") theme.get-element("layer-base");
+    }
+
+    vae-layer[type="base"] {
+        background-color: theme.get-element("layer-base");
+    }
+
+    vae-layer[type="alt"] {
+        background-color: theme.get-element("layer-alt");
+    }
+}
